@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/pref_title_user">
+
+        <Preference
+            android:key="user_avatar"
+            android:title="点击更换头像"
+            android:icon="@drawable/place_avatar"
+            android:layout="@layout/preference_user"/>
+
+        <EditTextPreference
+            android:key="user_sign"
+            android:title="签名"
+            android:summary="点击编辑签名"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_title_image">
+        <ListPreference
+            android:key="image_sim"
+            android:title="移动网络下加载"
+            android:defaultValue="0"
+            android:entries="@array/pref_image_type"
+            android:entryValues="@array/pref_image_value" />
+
+        <ListPreference
+            android:key="image_wifi"
+            android:title="wifi下加载"
+            android:defaultValue="1"
+            android:entries="@array/pref_image_type"
+            android:entryValues="@array/pref_image_value"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_title_notify">
+        <ListPreference
+            android:key="notify_sim"
+            android:title="使用移动网络时"
+            android:defaultValue="60"
+            android:entries="@array/pref_notify_type"
+            android:entryValues="@array/pref_notify_value"/>
+
+         <ListPreference
+            android:key="notify_wifi"
+            android:title="使用wifi时"
+            android:defaultValue="10"
+            android:entries="@array/pref_notify_type"
+            android:entryValues="@array/pref_notify_value"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.yiyuanliu.hepan.activity.SettingActivity"
+    tools:showIn="@layout/activity_setting">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/colorLightGrey"
+        android:background="@color/colorLightGrey">
+
+        <TextView
+            android:text="用户信息"
+            android:paddingTop="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_normal"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:elevation="2dp">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:src="@drawable/place_avatar"/>
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/PostTextAppearance"
+                android:text="@string/username"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/edit_user"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:background="@drawable/ic_edit_black_24dp"
+                app:backgroundTint="?colorControlNormal"/>
+        </LinearLayout>
+
+        <TextView
+            android:text="图片设置"
+            android:paddingTop="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_normal"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Switch
+            android:background="@color/colorWhite"
+            android:elevation="2dp"
+            android:padding="@dimen/activity_vertical_margin"
+            android:id="@+id/switch_sim"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:textAppearance="@style/PostTextAppearance"
+            android:text="移动网络下加载小图"/>
+
+        <Switch
+            android:background="@color/colorWhite"
+            android:elevation="2dp"
+            android:padding="@dimen/activity_vertical_margin"
+            android:id="@+id/switch_wifi"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:textAppearance="@style/PostTextAppearance"
+            android:text="WIFI下加载大图"/>
+
+        <TextView
+            android:text="消息刷新"
+            android:paddingTop="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_normal"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:elevation="2dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_normal">
+            <TextView android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="移动网络下消息刷新"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+            <TextView android:id="@+id/notify_sim_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text1"
+                android:layout_alignStart="@id/text1"
+                android:text="5分钟"
+                android:paddingTop="@dimen/spacing_micro"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:elevation="2dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_normal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Wifi下消息刷新"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+            <TextView android:id="@+id/notify_wifi_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text1"
+                android:layout_alignStart="@id/text1"
+                android:text="5分钟"
+                android:paddingTop="@dimen/spacing_micro"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

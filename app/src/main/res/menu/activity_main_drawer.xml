@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_new"
+            android:title="@string/action_sorter_main_new"
+            android:icon="@drawable/ic_timeline_black_24dp"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_all"
+            android:title="@string/action_sorter_main_all"
+            android:icon="@drawable/ic_format_quote_black_24dp"
+            android:checked="false"/>
+
+        <item
+            android:id="@+id/nav_hot"
+            android:title="@string/navigation_news_list"
+            android:checked="false"
+            android:icon="@drawable/ic_whatshot_black_24dp"/>
+    </group>
+
+    <item
+        android:id="@+id/nav_board_list"
+        android:title="@string/navigation_board_list"
+        android:icon="@drawable/ic_dashboard_black_24dp"/>
+
+    <item
+        android:id="@+id/nav_message"
+        android:title="@string/navigation_message"
+        android:icon="@drawable/ic_drafts_black_24dp"/>
+
+    <item
+        android:id="@+id/action_my_info"
+        android:title="我的信息"
+        android:icon="@drawable/ic_face_black_24dp"/>
+
+    <item
+        android:id="@+id/nav_friend_list"
+        android:title="@string/navigation_friend_list"
+        android:icon="@drawable/ic_supervisor_account_black_24dp"/>
+
+    <item
+        android:id="@+id/nav_setting"
+        android:title="设置"
+        android:icon="@drawable/ic_settings_black_24dp"/>
+
+</menu>

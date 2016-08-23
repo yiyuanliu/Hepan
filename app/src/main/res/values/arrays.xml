@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="pref_image_type" >
+        <item>小略缩图</item>
+        <item>大略缩图</item>
+    </string-array>
+
+    <string-array name="pref_image_value">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="pref_notify_type">
+        <item>每2分钟</item>
+        <item>每5分钟</item>
+        <item>每10分钟</item>
+        <item>每30分钟</item>
+        <item>每1小时</item>
+        <item>每3小时</item>
+        <item>不接收后台消息</item>
+    </string-array>
+
+    <string-array name="pref_notify_value" >
+        <item>2</item>
+        <item>5</item>
+        <item>10</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>0</item>
+    </string-array>
+</resources>

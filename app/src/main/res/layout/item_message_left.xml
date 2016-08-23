@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:padding="@dimen/spacing_normal"
+    android:layout_marginTop="@dimen/spacing_micro"
+    android:layout_marginEnd="80dp"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginBottom="@dimen/spacing_micro"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true"
+    app:cardCornerRadius="@dimen/padding_normal"
+    app:contentPaddingTop="@dimen/spacing_normal"
+    app:contentPaddingBottom="@dimen/spacing_normal"
+    app:contentPaddingLeft="@dimen/activity_horizontal_margin"
+    app:contentPaddingRight="@dimen/activity_horizontal_margin"
+    app:cardElevation="1dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/PostTextAppearance"
+            android:autoLink="all"
+            tools:text="这是一条新消息"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

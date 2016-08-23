@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.yiyuanliu.hepan.activity.PostListActivity">
+
+    <item
+        android:title="@string/action_order"
+        android:icon="@drawable/ic_filter_list_white_24dp"
+        app:showAsAction="always"
+        android:showAsAction="always">
+
+        <menu>
+            <item android:id="@+id/action_order_def"
+                android:title="正序浏览"/>
+
+            <item
+                android:id="@+id/action_order_last"
+                android:title="最新回复"/>
+        </menu>
+
+    </item>
+</menu>
