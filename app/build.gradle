@@ -4,13 +4,12 @@ apply plugin: 'android-apt'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
     defaultConfig {
         applicationId "com.yiyuanliu.hepan"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 2
-        versionName "0.2.160823_beta"
+        versionCode 3
+        versionName '0.3.160824_beta'
     }
     buildTypes {
 
@@ -22,6 +21,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    productFlavors {
     }
 }
 

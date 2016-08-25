@@ -30,4 +30,14 @@
         <item>180</item>
         <item>0</item>
     </string-array>
+
+    <string-array name="pref_main_entries" >
+        <item>Spinner</item>
+        <item>TabLayout + ViewPager</item>
+    </string-array>
+
+    <string-array name="pref_main_values" >
+        <item>0</item>
+        <item>1</item>
+    </string-array>
 </resources>

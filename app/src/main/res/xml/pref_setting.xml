@@ -17,6 +17,18 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:title="@string/pref_layout">
+
+        <ListPreference
+            android:key="main_type"
+            android:title="主页布局"
+            android:defaultValue="0"
+            android:entries="@array/pref_main_entries"
+            android:entryValues="@array/pref_main_values"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/pref_title_image">
         <ListPreference
             android:key="image_sim"

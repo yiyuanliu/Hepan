@@ -69,4 +69,10 @@ public class PreferenceHelper {
         }
     }
 
+    public int getMainActivityType() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        return Integer.parseInt(sharedPreferences.getString("main_type", "0"));
+    }
+
 }

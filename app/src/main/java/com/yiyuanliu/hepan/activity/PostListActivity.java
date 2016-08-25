@@ -66,8 +66,6 @@ public class PostListActivity extends AppCompatActivity implements PostListView,
 
     private boolean isLast;
 
-    private boolean isLoadingNew;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,33 +97,21 @@ public class PostListActivity extends AppCompatActivity implements PostListView,
             }
         });
 
-        isLoadingNew = true;
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                if (isLoadingNew && swipeRefreshLayout != null) {
-                    swipeRefreshLayout.setRefreshing(false);
-                    swipeRefreshLayout.setRefreshing(true);
-                }
-            }
-        });
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        text.post(new Runnable() {
-            @Override
-            public void run() {
-                text.clearFocus();
-            }
-        });
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
-        if (postListAdapter.getItemCount() == 0 && !postListPresenter.isLoading()){
-            loadNew();
+        if (postListAdapter.getItemCount() == 0 && !postListPresenter.isLoading()) {
+            swipeRefreshLayout.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loadNew();
+                }
+            }, 100);
         }
     }
 
@@ -231,8 +217,6 @@ public class PostListActivity extends AppCompatActivity implements PostListView,
         swipeRefreshLayout.setVisibility(View.VISIBLE);
         swipeRefreshLayout.setRefreshing(false);
 
-        isLoadingNew = false;
-
         quote.setVisibility(View.GONE);
 
         postListAdapter.clear();
@@ -250,8 +234,8 @@ public class PostListActivity extends AppCompatActivity implements PostListView,
 
     @Override
     public void loadMoreSuccess(List<PostList.TopicReply> dataList) {
+        postListAdapter.setLoading(false);
         for (PostList.TopicReply reply:dataList){
-            postListAdapter.setLoading(false);
             postListAdapter.addTopicReply(reply);
         }
 
@@ -263,8 +247,6 @@ public class PostListActivity extends AppCompatActivity implements PostListView,
         error.setVisibility(View.VISIBLE);
         swipeRefreshLayout.setVisibility(View.GONE);
         swipeRefreshLayout.setRefreshing(false);
-
-        isLoadingNew = false;
 
         error.setText(ExceptionHandle.getMsg(TAG, throwable));
     }

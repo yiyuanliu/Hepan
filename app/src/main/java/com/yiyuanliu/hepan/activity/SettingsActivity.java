@@ -154,6 +154,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         bindPreferenceSummaryToValue(findPreference("image_wifi"));
         bindPreferenceSummaryToValue(findPreference("notify_wifi"));
         bindPreferenceSummaryToValue(findPreference("notify_sim"));
+        bindPreferenceSummaryToValue(findPreference("main_type"));
 
         findPreference("notify_wifi").setOnPreferenceChangeListener(new NotifyChangeListener());
         findPreference("notify_sim").setOnPreferenceChangeListener(new NotifyChangeListener());

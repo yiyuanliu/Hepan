@@ -787,6 +787,11 @@ public class PostListAdapter extends MoreLoadAdapter {
                 }
             }
 
+            if (integerList.size() == 0) {
+                Toast.makeText(v.getContext(), "没有选择", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if (integerList.size() <= voteItem.pollInfo.type) {
                 listener.onVote(voteItem.pollInfo, integerList);
                 isLoading = true;

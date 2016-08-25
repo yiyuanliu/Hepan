@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.instabug.library.InstabugActivityDelegate;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
@@ -33,6 +34,7 @@ public class BigImageActivity extends AppCompatActivity {
         Intent intent = new Intent(context, BigImageActivity.class);
         intent.putExtra("url", url);
         context.startActivity(intent);
+
     }
 
     @Override
