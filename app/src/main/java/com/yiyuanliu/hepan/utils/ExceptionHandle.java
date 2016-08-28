@@ -33,7 +33,7 @@ public class ExceptionHandle {
         }
 
         if (throwable instanceof JsonParseException || throwable instanceof MalformedJsonException){
-            Instabug.reportException(throwable);
+            //Instabug.reportException(throwable);
             return JSON_EXCEPTION;
         }
 

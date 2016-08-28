@@ -20,6 +20,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -81,8 +82,9 @@
             android:label="@string/title_activity_settings" />
         <activity android:name=".TestActivity" />
 
-        <service
-            android:name=".notify.HeartService"/>
+        <service android:name=".notify.HeartService" />
+
+        <activity android:name=".activity.BrownActivity"></activity>
     </application>
 
 </manifest>

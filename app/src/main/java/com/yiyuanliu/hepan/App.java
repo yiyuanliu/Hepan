@@ -34,6 +34,7 @@ public class App extends Application {
 
         new Instabug.Builder(this, "d647c6f97d30d0fec7c3670ec8794c2f")
                 .setInvocationEvent(IBGInvocationEvent.IBGInvocationEventShake)
+                .setEmailFieldRequired(false)
                 .build();
 
         IMMLeaks.fixFocusedViewLeak(this);

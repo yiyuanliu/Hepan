@@ -7,6 +7,7 @@ import com.yiyuanliu.hepan.contract.NewTopicView;
 import com.yiyuanliu.hepan.data.DataManager;
 import com.yiyuanliu.hepan.data.bean.NormalBean;
 import com.yiyuanliu.hepan.data.bean.SettingRs;
+import com.yiyuanliu.hepan.data.model.AtUserList;
 import com.yiyuanliu.hepan.data.model.Forum;
 
 import java.util.HashMap;
@@ -85,6 +86,31 @@ public class NewTopicPresenter extends BasePresenter<NewTopicView> {
                     public void onNext(NormalBean normalBean) {
                         if (isViewAttached()) {
                             getView().onSendSuccessful();
+                        }
+                    }
+                });
+    }
+
+    public void loadAt() {
+        dataManager.getApi().loadAtUser(dataManager.getAccountManager().getUserMap())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Subscriber<AtUserList>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (isViewAttached()) {
+                            getView().onSendFailed(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(AtUserList atUserList) {
+                        if (isViewAttached()) {
+                            getView().showAt(atUserList);
                         }
                     }
                 });

@@ -1,15 +1,29 @@
 package com.yiyuanliu.hepan.activity;
 
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.inputmethodservice.InputMethodService;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +34,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.yiyuanliu.hepan.R;
@@ -29,11 +44,18 @@ import com.yiyuanliu.hepan.contract.PostListView;
 import com.yiyuanliu.hepan.data.Api;
 import com.yiyuanliu.hepan.data.DataManager;
 import com.yiyuanliu.hepan.data.bean.PostList;
+import com.yiyuanliu.hepan.data.model.AtUserList;
 import com.yiyuanliu.hepan.presenter.PostListPresenter;
+import com.yiyuanliu.hepan.span.ImageTag;
+import com.yiyuanliu.hepan.span.TestSpan;
+import com.yiyuanliu.hepan.utils.DeviceUtil;
 import com.yiyuanliu.hepan.utils.ExceptionHandle;
 import com.yiyuanliu.hepan.utils.MyLayoutManager;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,6 +79,7 @@ public class PostListActivity extends AppCompatActivity implements PostListView,
 
     @BindView(R.id.text) EditText text;
     @BindView(R.id.send) Button send;
+    @BindView(R.id.add_pic) Button addPic;
 
     @BindView(R.id.toolbar) Toolbar toolbar;
 
@@ -173,7 +196,7 @@ public class PostListActivity extends AppCompatActivity implements PostListView,
         }
 
         Snackbar.make(text, "发送中...", Snackbar.LENGTH_INDEFINITE).show();
-        postListPresenter.replyTopic(replyId, text.getText().toString());
+        postListPresenter.replyTopic(replyId, text);
 
     }
 
@@ -209,6 +232,37 @@ public class PostListActivity extends AppCompatActivity implements PostListView,
     public void voteFailed(Throwable throwable) {
         Snackbar.make(recyclerView, ExceptionHandle.getMsg(TAG, throwable), Snackbar.LENGTH_SHORT).show();
         postListAdapter.setVote(true, null);
+    }
+
+    @Override
+    public void showAt(final AtUserList atUserList) {
+        if (atUserList.stringList == null || atUserList.stringList.size() == 0) {
+            Snackbar.make(addPic, "没有可以at的好友", Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        List<Map<String, String>> mapList = new ArrayList<>();
+        for (String str : atUserList.stringList) {
+            Map<String, String > stringStringMap = new HashMap<>();
+            stringStringMap.put("name", str);
+            mapList.add(stringStringMap);
+        }
+
+        final SimpleAdapter simpleAdapter = new SimpleAdapter(this, mapList,
+                android.R.layout.simple_list_item_1, new String[]{"name"}, new int[]{android.R.id.text1});
+        builder.setTitle("选择好友")
+                .setAdapter(simpleAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name = atUserList.stringList.get(which);
+                        text.append(" @" + name + " ");
+                        dialog.dismiss();
+                    }
+                });
+        builder.setCancelable(true);
+        builder.create().show();
+
     }
 
     @Override
@@ -283,5 +337,90 @@ public class PostListActivity extends AppCompatActivity implements PostListView,
     @Override
     public void onRefresh() {
         loadNew();
+    }
+
+    @OnClick(R.id.add_pic)
+    void addPic() {
+        PopupMenu popupMenu = new PopupMenu(this, addPic);
+        popupMenu.inflate(R.menu.post_list_add);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.add_pic:
+                        if (checkReadPermission()){
+
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                            intent.setType("image/*");
+                            startActivityForResult(intent, 0);
+
+                        } else {
+                            requestReadPermission();
+                        }
+                        return true;
+
+                    case R.id.add_user:
+                        postListPresenter.loadAt();
+                        return true;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public boolean checkReadPermission(){
+        if (!DeviceUtil.hasM()){
+            return true;
+        }
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        return permissionCheck == PackageManager.PERMISSION_GRANTED;
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public void requestReadPermission(){
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case 1:
+                for (int i = 0;i < permissions.length;i ++){
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED){
+                        addPic();
+
+                    } else {
+                        Snackbar.make(addPic, "没有权限无法加载图片", Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case 0:
+                if (resultCode == Activity.RESULT_OK) {
+                    Uri uri = data.getData();
+                    ImageTag imageTagSpan = new ImageTag(this.getResources().getColor(R.color.colorAccent), uri);
+
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text.getText());
+                    int len = spannableStringBuilder.length();
+                    spannableStringBuilder.append("图片");
+                    spannableStringBuilder.setSpan(imageTagSpan, len, len + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    text.setText(spannableStringBuilder);
+                    text.setCursorVisible(true);
+                }
+                break;
+        }
     }
 }

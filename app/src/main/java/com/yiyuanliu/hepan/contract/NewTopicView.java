@@ -1,6 +1,7 @@
 package com.yiyuanliu.hepan.contract;
 
 import com.yiyuanliu.hepan.data.bean.SettingRs;
+import com.yiyuanliu.hepan.data.model.AtUserList;
 import com.yiyuanliu.hepan.data.model.Forum;
 
 /**
@@ -11,4 +12,6 @@ public interface NewTopicView {
     void onSendFailed(Throwable throwable);
     void onLoaded(Forum forum, SettingRs settingRs);
     void onLoadFailed(Throwable throwable);
+
+    void showAt(AtUserList atUserList);
 }

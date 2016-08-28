@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.yiyuanliu.hepan.App;
+import com.yiyuanliu.hepan.data.bean.AtUser;
 import com.yiyuanliu.hepan.data.bean.AttachmentRs;
 import com.yiyuanliu.hepan.data.bean.AvatarBean;
 import com.yiyuanliu.hepan.data.bean.Content;
@@ -27,12 +28,14 @@ import com.yiyuanliu.hepan.data.bean.UserInfo;
 import com.yiyuanliu.hepan.data.bean.UserList;
 import com.yiyuanliu.hepan.data.bean.UserLogin;
 import com.yiyuanliu.hepan.data.bean.VoteRs;
+import com.yiyuanliu.hepan.data.model.AtUserList;
 import com.yiyuanliu.hepan.data.model.Forum;
 import com.yiyuanliu.hepan.data.model.NotifyPost;
 import com.yiyuanliu.hepan.data.model.NotifySys;
 import com.yiyuanliu.hepan.data.model.Pm;
 import com.yiyuanliu.hepan.data.model.PmMessage;
 import com.yiyuanliu.hepan.data.model.UserBase;
+import com.yiyuanliu.hepan.span.ImageTag;
 import com.yiyuanliu.hepan.utils.HepanException;
 import com.yiyuanliu.hepan.utils.PathUtil;
 
@@ -41,6 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -100,12 +104,14 @@ public class Api {
 
     private WebApi webApi;
 
-    private Forum forum;
-    private com.yiyuanliu.hepan.data.model.UserInfo myInfo;
+    private volatile Forum forum;
+    private volatile com.yiyuanliu.hepan.data.model.UserInfo myInfo;
 
-    private SettingRs mSettingRs;
+    private volatile SettingRs mSettingRs;
 
-    private LoginListener loginListener;
+    private volatile LoginListener loginListener;
+
+    private volatile AtUserList atUserList;
 
     public Api(){
         webApi = new Retrofit.Builder().baseUrl(BASE_URL)
@@ -376,6 +382,136 @@ public class Api {
                 });
     }
 
+    public Observable<NormalBean> newTopic(final int fid, final int classificationId,
+                                           final String title,
+                                           final List<Object> contentList,
+                                           final Map<String, String> userMap) {
+        final List<Uri> uriList = new ArrayList<>();
+        for (Object o: contentList) {
+            if (o instanceof Uri) {
+                uriList.add((Uri) o);
+            }
+        }
+
+        if (uriList.size() == 0) {
+            TopicAdmin topicAdmin = new TopicAdmin();
+
+            topicAdmin.getBody().getJson().setFid(fid);
+            topicAdmin.getBody().getJson().setTitle(title);
+            topicAdmin.getBody().getJson().setTypeId(classificationId);
+
+            for (Object o: contentList) {
+                String s = o.toString();
+                Content content1 = new Content();
+                content1.type = Content.TYPE_NORMAL;
+                content1.infor = s;
+                topicAdmin.getBody().getJson().addContent(content1);
+            }
+
+            return webApi.topicAdmin("new", topicAdmin, userMap);
+        }
+
+        return sendImg(ATTACHMENT_MODULE_FORUM, uriList, userMap)
+                .flatMap(new Func1<Map<Uri, String>, Observable<NormalBean>>() {
+                    @Override
+                    public Observable<NormalBean> call(Map<Uri, String> uriStringMap) {
+                        TopicAdmin topicAdmin = new TopicAdmin();
+
+                        topicAdmin.getBody().getJson().setFid(fid);
+                        topicAdmin.getBody().getJson().setTitle(title);
+                        topicAdmin.getBody().getJson().setTypeId(classificationId);
+
+                        for (Object o: contentList) {
+                            if (o instanceof String) {
+                                Content content1 = new Content();
+                                content1.type = Content.TYPE_NORMAL;
+                                content1.infor = o.toString();
+                                topicAdmin.getBody().getJson().addContent(content1);
+                            }
+
+                            if (o instanceof Uri) {
+                                Uri uri = (Uri) o;
+                                Content content2 = new Content();
+                                content2.type = Content.TYPE_PICTURE;
+                                content2.infor = uriStringMap.get(uri);
+
+                                topicAdmin.getBody().getJson().addContent(content2);
+                            }
+                        }
+                        return webApi.topicAdmin("new", topicAdmin, userMap);
+                    }
+                });
+    }
+
+    public Observable<NormalBean> reply(final int tid,
+                                        final int replyId,
+                                        final List<Object> contentList,
+                                        final Map<String, String> userMap) {
+        final List<Uri> uriList = new ArrayList<>();
+        for (Object o: contentList) {
+            if (o instanceof ImageTag) {
+                uriList.add(((ImageTag) o).getUri());
+            }
+        }
+
+        if (uriList.size() == 0) {
+            TopicAdmin topicAdmin = new TopicAdmin();
+            topicAdmin.getBody().getJson().setTid(tid);
+            topicAdmin.getBody().getJson().setReplyId(replyId);
+            if (replyId != 0){
+                topicAdmin.getBody().getJson().setIsQuote(1);
+            }
+
+            for(Object o:contentList) {
+                String s = (String) o;
+
+                Content content1 = new Content();
+                content1.type = Content.TYPE_NORMAL;
+                content1.infor = s;
+
+                topicAdmin.getBody().getJson().addContent(content1);
+            }
+
+            return webApi.topicAdmin("reply", topicAdmin, userMap);
+        }
+
+        return sendImg(ATTACHMENT_MODULE_FORUM, uriList, userMap)
+                .flatMap(new Func1<Map<Uri, String>, Observable<NormalBean>>() {
+                    @Override
+                    public Observable<NormalBean> call(Map<Uri, String> uriStringMap) {
+                        TopicAdmin topicAdmin = new TopicAdmin();
+                        topicAdmin.getBody().getJson().setTid(tid);
+                        topicAdmin.getBody().getJson().setReplyId(replyId);
+                        if (replyId != 0){
+                            topicAdmin.getBody().getJson().setIsQuote(1);
+                        }
+
+                        for (Object o:contentList) {
+                            if (o instanceof String) {
+                                String s = (String) o;
+
+                                Content content1 = new Content();
+                                content1.type = Content.TYPE_NORMAL;
+                                content1.infor = s;
+
+                                topicAdmin.getBody().getJson().addContent(content1);
+                            }
+
+                            if (o instanceof ImageTag) {
+                                Content content2 = new Content();
+                                content2.type = Content.TYPE_PICTURE;
+                                content2.infor = uriStringMap.get(((ImageTag) o).getUri());
+
+                                topicAdmin.getBody().getJson().addContent(content2);
+                            }
+                        }
+
+                        return webApi.topicAdmin("reply", topicAdmin, userMap);
+                    }
+                });
+
+    }
+
     public Observable<Void> updateAvatar(final Map<String, String> stringMap) {
         File file = new File(App.getApp().getExternalCacheDir(), "avatar");
         RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"),file);
@@ -473,6 +609,21 @@ public class Api {
                         public com.yiyuanliu.hepan.data.model.UserInfo call(UserInfo userInfo) {
                             myInfo = com.yiyuanliu.hepan.data.model.UserInfo.newInstance(userInfo, userBase);
                             return myInfo;
+                        }
+                    });
+        }
+    }
+
+    public Observable<AtUserList> loadAtUser(Map<String, String> userMap) {
+        if (atUserList != null) {
+            return Observable.just(atUserList);
+        } else {
+            return webApi.getAtUser(100, userMap)
+                    .map(new Func1<AtUser, AtUserList>() {
+                        @Override
+                        public AtUserList call(AtUser atUser) {
+                            atUserList = new AtUserList(atUser);
+                            return atUserList;
                         }
                     });
         }
@@ -591,6 +742,10 @@ public class Api {
         @Multipart
         @POST("index.php?r=user/uploadavatarex")
         Observable<AvatarBean> uploadAvatar(@Part MultipartBody.Part file, @QueryMap Map<String, String> userMap);
+
+        @FormUrlEncoded
+        @POST("index.php?r=forum/atuserlist")
+        Observable<AtUser> getAtUser(@Field("pageSize") int pageSize, @FieldMap Map<String,String> map);
 
     }
 

@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -26,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -37,11 +39,17 @@ import com.yiyuanliu.hepan.adapter.NewTopicAdapter;
 import com.yiyuanliu.hepan.contract.NewTopicView;
 import com.yiyuanliu.hepan.data.DataManager;
 import com.yiyuanliu.hepan.data.bean.SettingRs;
+import com.yiyuanliu.hepan.data.model.AtUserList;
 import com.yiyuanliu.hepan.data.model.Forum;
 import com.yiyuanliu.hepan.presenter.NewTopicPresenter;
 import com.yiyuanliu.hepan.utils.DeviceUtil;
 import com.yiyuanliu.hepan.utils.ExceptionHandle;
 import com.yiyuanliu.hepan.utils.HepanException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -162,6 +170,9 @@ public class NewTopicActivity extends AppCompatActivity implements NewTopicView,
             case R.id.send:
                 send();
                 break;
+            case R.id.at_user:
+                newTopicPresenter.loadAt();
+                break;
         }
         return true;
     }
@@ -251,6 +262,36 @@ public class NewTopicActivity extends AppCompatActivity implements NewTopicView,
                         newTopicPresenter.load();
                     }
                 }).show();
+    }
+
+    @Override
+    public void showAt(final AtUserList atUserList) {
+        if (atUserList.stringList == null || atUserList.stringList.size() == 0) {
+            Snackbar.make(toolbar, "没有可以at的好友", Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        List<Map<String, String>> mapList = new ArrayList<>();
+        for (String str : atUserList.stringList) {
+            Map<String, String > stringStringMap = new HashMap<>();
+            stringStringMap.put("name", str);
+            mapList.add(stringStringMap);
+        }
+
+        final SimpleAdapter simpleAdapter = new SimpleAdapter(this, mapList,
+                android.R.layout.simple_list_item_1, new String[]{"name"}, new int[]{android.R.id.text1});
+        builder.setTitle("选择好友")
+                .setAdapter(simpleAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name = atUserList.stringList.get(which);
+                        newTopicAdapter.textViewHolder.post.append(" @" + name + " ");
+                        dialog.dismiss();
+                    }
+                });
+        builder.setCancelable(true);
+        builder.create().show();
     }
 
     private void getImage(){

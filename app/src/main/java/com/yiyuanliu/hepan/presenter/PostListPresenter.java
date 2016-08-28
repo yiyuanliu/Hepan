@@ -1,6 +1,9 @@
 package com.yiyuanliu.hepan.presenter;
 
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.yiyuanliu.hepan.base.BasePresenter;
 import com.yiyuanliu.hepan.base.MoreLoadPresenter;
@@ -13,8 +16,11 @@ import com.yiyuanliu.hepan.data.bean.NormalBean;
 import com.yiyuanliu.hepan.data.bean.PostList;
 import com.yiyuanliu.hepan.data.bean.TopicAdmin;
 import com.yiyuanliu.hepan.data.bean.VoteRs;
+import com.yiyuanliu.hepan.data.model.AtUserList;
+import com.yiyuanliu.hepan.span.ImageTag;
 import com.yiyuanliu.hepan.utils.HepanException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Subscriber;
@@ -114,23 +120,24 @@ public class PostListPresenter extends BasePresenter<PostListView> implements Mo
         return subscription != null && !subscription.isUnsubscribed();
     }
 
+    public void replyTopic(int replyId, TextView textView) {
+        SpannableString spannableString = new SpannableString(textView.getEditableText());
+        ImageTag[] imageTags = spannableString.getSpans(0, spannableString.length(), ImageTag.class);
 
-    public void replyTopic(int replyId, String content) {
-        TopicAdmin topicAdmin = new TopicAdmin();
-        topicAdmin.getBody().getJson().setTid(topicId);
-        topicAdmin.getBody().getJson().setReplyId(replyId);
-        if (replyId != 0){
-            topicAdmin.getBody().getJson().setIsQuote(1);
+        List<Object> contentList = new ArrayList<>();
+        int last = 0;
+        for (ImageTag imageTag:imageTags) {
+            if (last < spannableString.getSpanStart(imageTag))
+                contentList.add(spannableString.toString().substring(last, spannableString.getSpanStart(imageTag)));
+            last = spannableString.getSpanEnd(imageTag);
+            contentList.add(imageTag);
         }
 
-        Content content1 = new Content();
-        content1.type = Content.TYPE_NORMAL;
-        content1.infor = content;
+        if (last < spannableString.length()) {
+            contentList.add(spannableString.toString().substring(last, spannableString.length()));
+        }
 
-        topicAdmin.getBody().getJson().addContent(content1);
-
-        dataManager.getApi().getWebApi()
-                .topicAdmin(Api.TOPIC_ADMIN_REPLY, topicAdmin, dataManager.getAccountManager().getUserMap())
+        dataManager.getApi().reply(topicId, replyId, contentList, dataManager.getAccountManager().getUserMap())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<NormalBean>() {
@@ -156,6 +163,49 @@ public class PostListPresenter extends BasePresenter<PostListView> implements Mo
                     }
                 });
     }
+
+
+//    public void replyTopic(int replyId, String content) {
+//        TopicAdmin topicAdmin = new TopicAdmin();
+//        topicAdmin.getBody().getJson().setTid(topicId);
+//        topicAdmin.getBody().getJson().setReplyId(replyId);
+//        if (replyId != 0){
+//            topicAdmin.getBody().getJson().setIsQuote(1);
+//        }
+//
+//        Content content1 = new Content();
+//        content1.type = Content.TYPE_NORMAL;
+//        content1.infor = content;
+//
+//        topicAdmin.getBody().getJson().addContent(content1);
+//
+//        dataManager.getApi().getWebApi()
+//                .topicAdmin(Api.TOPIC_ADMIN_REPLY, topicAdmin, dataManager.getAccountManager().getUserMap())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe(new Subscriber<NormalBean>() {
+//                    @Override
+//                    public void onCompleted() {
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        if (isViewAttached()){
+//                            getView().replyFailed(e);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onNext(NormalBean baseBean) {
+//                        page --;
+//                        hasMore = true;
+//                        if (isViewAttached()){
+//                            HepanException.detectRespon(baseBean);
+//                            getView().replySuccess();
+//                        }
+//                    }
+//                });
+//    }
 
     public void vote(List<Integer> integerList) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -210,4 +260,28 @@ public class PostListPresenter extends BasePresenter<PostListView> implements Mo
         cancel();
     }
 
+    public void loadAt() {
+        dataManager.getApi().loadAtUser(dataManager.getAccountManager().getUserMap())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Subscriber<AtUserList>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (isViewAttached()) {
+                            getView().replyFailed(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(AtUserList atUserList) {
+                        if (isViewAttached()) {
+                            getView().showAt(atUserList);
+                        }
+                    }
+                });
+    }
 }

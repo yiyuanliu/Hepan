@@ -114,7 +114,7 @@ public class NewTopicAdapter extends RecyclerView.Adapter {
     }
 
     public static class TextViewHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.text) EditText post;
+        @BindView(R.id.text) public EditText post;
 
         public static TextViewHolder newInstance(ViewGroup parent){
             View item = LayoutInflater.from(parent.getContext())

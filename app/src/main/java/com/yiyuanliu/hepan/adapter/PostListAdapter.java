@@ -32,6 +32,7 @@ import com.yiyuanliu.hepan.activity.FragmentActivity;
 import com.yiyuanliu.hepan.activity.UserInfoActivity;
 import com.yiyuanliu.hepan.base.MoreLoadAdapter;
 import com.yiyuanliu.hepan.data.bean.Content;
+import com.yiyuanliu.hepan.data.bean.NotifyListSys;
 import com.yiyuanliu.hepan.data.bean.PostList;
 import com.yiyuanliu.hepan.data.model.UserBase;
 import com.yiyuanliu.hepan.span.EmojiTarget;
@@ -52,6 +53,7 @@ import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.http.Url;
 
 /**
  * Created by yiyuan on 2016/7/23.
@@ -260,6 +262,7 @@ public class PostListAdapter extends MoreLoadAdapter {
             EndItem endItem = new EndItem();
             endItem.postId = topicReply.reply_posts_id;
             endItem.userName = topicReply.reply_name;
+
             baseItemList.add(endItem);
 
             return baseItemList;
@@ -455,6 +458,7 @@ public class PostListAdapter extends MoreLoadAdapter {
     public static class EndItem extends BaseItem{
         public int postId;
         public String userName;
+        public Map<String, Url> map = new HashMap<>();
 
         @Override
         public int getType() {
