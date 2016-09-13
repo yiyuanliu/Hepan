@@ -7,12 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yiyuanliu.hepan.R;
@@ -24,11 +22,8 @@ import com.yiyuanliu.hepan.data.DataManager;
 import com.yiyuanliu.hepan.data.model.Topic;
 import com.yiyuanliu.hepan.presenter.TopicListPresenter;
 import com.yiyuanliu.hepan.utils.ExceptionHandle;
-import com.yiyuanliu.hepan.utils.HepanException;
-import com.yiyuanliu.hepan.utils.NoTopicException;
 import com.yiyuanliu.hepan.utils.RecyclerDivider;
 
-import java.net.SocketTimeoutException;
 import java.util.List;
 
 import butterknife.BindView;

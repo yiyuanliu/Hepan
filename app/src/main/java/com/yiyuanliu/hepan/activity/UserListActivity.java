@@ -2,12 +2,11 @@ package com.yiyuanliu.hepan.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,6 +19,7 @@ import com.yiyuanliu.hepan.data.DataManager;
 import com.yiyuanliu.hepan.data.model.UserBase;
 import com.yiyuanliu.hepan.presenter.UserListPresenter;
 import com.yiyuanliu.hepan.utils.ExceptionHandle;
+import com.yiyuanliu.hepan.utils.RecyclerDivider;
 
 import java.util.List;
 
@@ -72,6 +72,7 @@ public class UserListActivity extends AppCompatActivity implements UserListView 
         moreLoadListener = new MoreLoadListener(linearLayoutManager, userListAdapter, userListPresenter);
         recyclerView.setAdapter(userListAdapter);
         recyclerView.addOnScrollListener(moreLoadListener);
+        recyclerView.addItemDecoration(new RecyclerDivider(this));
     }
 
     @Override

@@ -1,17 +1,13 @@
 package com.yiyuanliu.hepan.adapter;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -22,14 +18,11 @@ import com.yiyuanliu.hepan.R;
 import com.yiyuanliu.hepan.base.MoreLoadAdapter;
 import com.yiyuanliu.hepan.data.bean.NotifyListSys;
 import com.yiyuanliu.hepan.data.model.NotifySys;
-import com.yiyuanliu.hepan.data.model.Pm;
 import com.yiyuanliu.hepan.utils.AvatarTrans;
 import com.yiyuanliu.hepan.utils.TimeUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

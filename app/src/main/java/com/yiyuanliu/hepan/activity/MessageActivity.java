@@ -14,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.yiyuanliu.hepan.R;
-import com.yiyuanliu.hepan.data.model.UserBase;
 import com.yiyuanliu.hepan.fragment.MessageFragment;
 import com.yiyuanliu.hepan.utils.NumDrawable;
 

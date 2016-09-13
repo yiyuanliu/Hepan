@@ -1,7 +1,5 @@
 package com.yiyuanliu.hepan.data.bean;
 
-import com.yiyuanliu.hepan.adapter.PostListAdapter;
-
 import java.util.List;
 
 /**

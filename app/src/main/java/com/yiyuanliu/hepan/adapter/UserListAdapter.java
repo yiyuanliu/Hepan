@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.yiyuanliu.hepan.R;
-import com.yiyuanliu.hepan.activity.FragmentActivity;
 import com.yiyuanliu.hepan.activity.UserInfoActivity;
 import com.yiyuanliu.hepan.base.MoreLoadAdapter;
 import com.yiyuanliu.hepan.data.model.UserBase;

@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.inputmethodservice.InputMethodService;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,17 +22,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.style.BackgroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -45,9 +41,11 @@ import com.yiyuanliu.hepan.data.Api;
 import com.yiyuanliu.hepan.data.DataManager;
 import com.yiyuanliu.hepan.data.bean.PostList;
 import com.yiyuanliu.hepan.data.model.AtUserList;
+import com.yiyuanliu.hepan.data.model.Rate;
+import com.yiyuanliu.hepan.data.model.RateInfo;
+import com.yiyuanliu.hepan.dialog.RateDialog;
 import com.yiyuanliu.hepan.presenter.PostListPresenter;
 import com.yiyuanliu.hepan.span.ImageTag;
-import com.yiyuanliu.hepan.span.TestSpan;
 import com.yiyuanliu.hepan.utils.DeviceUtil;
 import com.yiyuanliu.hepan.utils.ExceptionHandle;
 import com.yiyuanliu.hepan.utils.MyLayoutManager;
@@ -61,7 +59,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PostListActivity extends AppCompatActivity implements PostListView, PostListAdapter.Listener, SwipeRefreshLayout.OnRefreshListener {
+public class PostListActivity extends AppCompatActivity implements PostListView, PostListAdapter.Listener, SwipeRefreshLayout.OnRefreshListener, RateDialog.RateListener {
     public static final String TAG = "PostListActivity";
 
     public static final String BUNDLE_TOPIC_ID = "TOPIC_ID";
@@ -422,5 +420,54 @@ public class PostListActivity extends AppCompatActivity implements PostListView,
                 }
                 break;
         }
+    }
+
+    private RateDialog mRateDialog;
+    private RateInfo mRateInfo;
+
+    @Override
+    public void rateInfoLoaded(RateInfo rateInfo) {
+        mRateDialog = RateDialog.showDialog(this, this, rateInfo);
+        mRateInfo = rateInfo;
+    }
+
+    @Override
+    public void rateInfoLoadedFailed(Throwable throwable) {
+        Snackbar.make(recyclerView, ExceptionHandle.getMsg(TAG, throwable), Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void rateFinished(Rate rate) {
+        if (rate.cancelDialog) {
+            mRateDialog.dismiss();
+        }
+
+        if (rate.successful) {
+            Snackbar.make(recyclerView, "评分成功", Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(recyclerView, rate.info, Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void rateFailed(Throwable throwable) {
+        mRateDialog.showError(throwable);
+    }
+
+    @Override
+    public void onRate(int score, String reason, boolean notify) {
+        postListPresenter.rate(mRateInfo, score, reason, notify);
+    }
+
+    @Override
+    public void onRate(String rateUrl) {
+        postListPresenter.loadRateInfo(rateUrl);
+    }
+
+    @Override
+    public void onClickLink(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 }

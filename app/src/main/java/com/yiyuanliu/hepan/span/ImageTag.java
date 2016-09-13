@@ -1,10 +1,7 @@
 package com.yiyuanliu.hepan.span;
 
 import android.net.Uri;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
-import android.text.style.StyleSpan;
 
 /**
  * Created by yiyuan on 2016/8/27.

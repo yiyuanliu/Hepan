@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 
-import com.yiyuanliu.hepan.activity.MainActivity;
 import com.yiyuanliu.hepan.activity.BoardListActivity;
+import com.yiyuanliu.hepan.activity.MainActivity;
 import com.yiyuanliu.hepan.activity.MessageActivity;
 import com.yiyuanliu.hepan.activity.SettingsActivity;
 import com.yiyuanliu.hepan.activity.UserInfoActivity;

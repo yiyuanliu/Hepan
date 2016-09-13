@@ -1,10 +1,8 @@
 package com.yiyuanliu.hepan.utils;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;

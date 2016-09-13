@@ -10,13 +10,6 @@ import com.yiyuanliu.hepan.activity.delegate.SpinnerDelegate;
 import com.yiyuanliu.hepan.activity.delegate.TabDelegate;
 import com.yiyuanliu.hepan.utils.PreferenceHelper;
 
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-import rx.Observable;
-import rx.Subscription;
-
 /**
  * Created by yiyuan on 2016/8/24.
  */

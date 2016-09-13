@@ -1,8 +1,5 @@
 package com.yiyuanliu.hepan.fragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -13,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yiyuanliu.hepan.R;
@@ -24,22 +20,16 @@ import com.yiyuanliu.hepan.base.MoreLoadAdapter;
 import com.yiyuanliu.hepan.base.MoreLoadListener;
 import com.yiyuanliu.hepan.contract.MessageView;
 import com.yiyuanliu.hepan.data.DataManager;
-import com.yiyuanliu.hepan.data.model.Topic;
 import com.yiyuanliu.hepan.presenter.MessagePresenter;
 import com.yiyuanliu.hepan.utils.ExceptionHandle;
-import com.yiyuanliu.hepan.utils.HepanException;
-import com.yiyuanliu.hepan.utils.NoTopicException;
 import com.yiyuanliu.hepan.utils.RecyclerDivider;
 
-import java.net.SocketTimeoutException;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import retrofit2.http.PUT;
 
 public class MessageFragment extends Fragment implements MessageView, SwipeRefreshLayout.OnRefreshListener {
     public static final int TYPE_NOTIFY_POST = 0;

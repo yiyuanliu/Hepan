@@ -9,14 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
-import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,11 +26,9 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.yiyuanliu.hepan.R;
 import com.yiyuanliu.hepan.activity.BigImageActivity;
-import com.yiyuanliu.hepan.activity.FragmentActivity;
 import com.yiyuanliu.hepan.activity.UserInfoActivity;
 import com.yiyuanliu.hepan.base.MoreLoadAdapter;
 import com.yiyuanliu.hepan.data.bean.Content;
-import com.yiyuanliu.hepan.data.bean.NotifyListSys;
 import com.yiyuanliu.hepan.data.bean.PostList;
 import com.yiyuanliu.hepan.data.model.UserBase;
 import com.yiyuanliu.hepan.span.EmojiTarget;
@@ -235,6 +231,22 @@ public class PostListAdapter extends MoreLoadAdapter {
             endItem.topicId = topicContent.topic_id;
             endItem.readNum = topicContent.hits;
             endItem.replyNum = topicContent.replies;
+
+            for (PostList.TopicContent.ExtraPanelBean extraPanel:topicContent.extraPanel) {
+                if (extraPanel != null && extraPanel.type.equals("rate")) {
+                    endItem.rateUrl = extraPanel.action;
+                }
+            }
+
+            for (PostList.TopicContent.ManagePanelBean managePanel: topicContent.managePanel) {
+                if (managePanel != null && managePanel.type.equals("edit")) {
+                    endItem.editUrl = managePanel.action;
+                }
+
+                if (managePanel != null && managePanel.type.equals("delthread")) {
+                    endItem.deleteUrl = managePanel.action;
+                }
+            }
 
             baseItemList.add(endItem);
 
@@ -476,6 +488,10 @@ public class PostListAdapter extends MoreLoadAdapter {
         public int topicId;
         public int readNum;
         public int replyNum;
+
+        public String rateUrl;
+        public String editUrl;
+        public String deleteUrl;
 
         @Override
         public int getType() {
@@ -910,6 +926,8 @@ public class PostListAdapter extends MoreLoadAdapter {
         @BindView(R.id.reply) TextView reply;
         @BindView(R.id.report) TextView report;
         @BindView(R.id.reply_num) TextView replyNum;
+        @BindView(R.id.rate) TextView rate;
+        @BindView(R.id.edit) TextView edit;
 
         Listener listener;
 
@@ -927,7 +945,7 @@ public class PostListAdapter extends MoreLoadAdapter {
 
         @Override
         public void bind(BaseItem baseItem) {
-            TopicEndItem topicEndItem = (TopicEndItem) baseItem;
+            final TopicEndItem topicEndItem = (TopicEndItem) baseItem;
             reply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -938,6 +956,30 @@ public class PostListAdapter extends MoreLoadAdapter {
                 replyNum.setText(topicEndItem.replyNum + "条评论");
             } else {
                 replyNum.setText("没有评论");
+            }
+
+            if (topicEndItem.rateUrl != null) {
+                rate.setVisibility(View.VISIBLE);
+                rate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.onRate(topicEndItem.rateUrl);
+                    }
+                });
+            } else {
+                rate.setVisibility(View.GONE);
+            }
+
+            if (topicEndItem.editUrl != null) {
+                edit.setVisibility(View.VISIBLE);
+                edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.onClickLink(topicEndItem.editUrl);
+                    }
+                });
+            } else {
+                edit.setVisibility(View.GONE);
             }
 
         }
@@ -988,6 +1030,10 @@ public class PostListAdapter extends MoreLoadAdapter {
         void onReply();
         void onReply(int replyId, String name);
         void onVote(PostList.TopicContent.PollInfo pollInfo, List<Integer> integerList);
+
+        void onRate(String rateUrl);
+
+        void onClickLink(String url);
     }
 
     private static void openLink(Context context, String url) {

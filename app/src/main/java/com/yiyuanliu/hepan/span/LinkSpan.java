@@ -2,7 +2,6 @@ package com.yiyuanliu.hepan.span;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.text.style.ClickableSpan;
 import android.util.Log;
@@ -10,11 +9,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.yiyuanliu.hepan.activity.BoardActivity;
-import com.yiyuanliu.hepan.activity.FragmentActivity;
 import com.yiyuanliu.hepan.activity.PostListActivity;
 import com.yiyuanliu.hepan.activity.UserInfoActivity;
-import com.yiyuanliu.hepan.data.model.Forum;
-import com.yiyuanliu.hepan.data.model.Topic;
 import com.yiyuanliu.hepan.data.model.UserBase;
 import com.yiyuanliu.hepan.utils.IntentUtil;
 

@@ -5,9 +5,7 @@ import android.util.Log;
 import com.yiyuanliu.hepan.base.BasePresenter;
 import com.yiyuanliu.hepan.base.MoreLoadPresenter;
 import com.yiyuanliu.hepan.contract.MainView;
-import com.yiyuanliu.hepan.data.Api;
 import com.yiyuanliu.hepan.data.DataManager;
-import com.yiyuanliu.hepan.data.model.Topic;
 import com.yiyuanliu.hepan.data.model.TopicList;
 import com.yiyuanliu.hepan.utils.NoTopicException;
 

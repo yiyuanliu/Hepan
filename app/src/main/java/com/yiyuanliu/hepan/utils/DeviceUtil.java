@@ -4,10 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
-import android.support.annotation.Dimension;
-import android.telecom.ConnectionService;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 
 /**

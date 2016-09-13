@@ -1,7 +1,5 @@
 package com.yiyuanliu.hepan.utils;
 
-import android.text.format.DateUtils;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

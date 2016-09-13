@@ -2,11 +2,10 @@ package com.yiyuanliu.hepan.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -47,7 +46,6 @@ public class BrownActivity extends AppCompatActivity {
         if (getIntent() != null) {
             url = getIntent().getStringExtra("url");
         }
-
 
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);

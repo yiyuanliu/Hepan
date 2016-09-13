@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="100dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="清水河畔"
+        android:textStyle="bold"
+        android:textSize="48sp"
+        android:textColor="?colorAccent"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="星辰工作室"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/colorDeepGrey"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+</LinearLayout>

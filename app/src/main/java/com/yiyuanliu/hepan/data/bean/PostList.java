@@ -1,9 +1,5 @@
 package com.yiyuanliu.hepan.data.bean;
 
-import android.content.Context;
-
-import com.yiyuanliu.hepan.data.model.Topic;
-
 import java.util.List;
 
 /**
@@ -31,6 +27,8 @@ public class PostList extends NormalBean {
         public int is_quote;
         public String quote_content;
         public String quote_user_name;
+
+        public List<TopicContent.ManagePanelBean> managePanel;
     }
 
     public static class TopicContent{
@@ -47,6 +45,22 @@ public class PostList extends NormalBean {
 
         public PollInfo poll_info;
         public List<Content> content;
+        /**
+         * action : http://bbs.uestc.edu.cn/mobcent/app/web/index.php?r=forum/support&sdkVersion=2.4.2.0&accessToken=576820808990db8dedc5f8960c8ae&accessSecret=2927d71a3f2cda9e756e10ecfa7fe&apphash=&tid=1624643&pid=29044611&type=post
+         * title : 支持
+         * recommendAdd :
+         * extParams : {"beforeAction":"","recommendAdd":0,"isHasRecommendAdd":0}
+         * type : support
+         */
+
+        public List<ExtraPanelBean> extraPanel;
+        /**
+         * action : http://bbs.uestc.edu.cn/forum.php?mod=post&action=edit&fid=48&tid=1623022&pid=29029141
+         * title : 编辑
+         * type : edit
+         */
+
+        public List<ManagePanelBean> managePanel;
 
         //还没见过不投票就可见的情况，所以我懒得管这情况了==
         public static class PollInfo{
@@ -64,6 +78,26 @@ public class PostList extends NormalBean {
                 public int total_num;
                 public int totalNum;
             }
+        }
+
+        public static class ExtraPanelBean {
+            public String action;
+            public String title;
+            public ExtParamsBean extParams;
+            public String type;
+
+            public static class ExtParamsBean {
+                private String beforeAction;
+                private int recommendAdd;
+                private int isHasRecommendAdd;
+            }
+        }
+
+        public static class ManagePanelBean {
+            public String action;
+            public String title;
+            public String type;
+
         }
     }
 }

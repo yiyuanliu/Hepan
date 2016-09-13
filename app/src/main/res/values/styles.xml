@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/material_red_500</item>
-        <item name="colorPrimaryDark">@color/material_red_700</item>
-        <item name="colorAccent">@color/material_red_accent_200</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
         <!--<item name="android:windowAnimationStyle">@style/WindowsAnim</item>-->
     </style>
@@ -25,10 +25,14 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="AppTheme.NoBar.Splash">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="AppTheme.Dialog" parent="Base.Theme.AppCompat.Light.Dialog">
-        <item name="colorPrimary">@color/material_red_500</item>
-        <item name="colorPrimaryDark">@color/material_red_700</item>
-        <item name="colorAccent">@color/material_red_accent_200</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

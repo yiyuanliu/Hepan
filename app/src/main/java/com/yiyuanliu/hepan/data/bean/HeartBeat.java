@@ -2,8 +2,6 @@ package com.yiyuanliu.hepan.data.bean;
 
 import java.util.List;
 
-import retrofit2.http.Body;
-
 /**
  * Created by yiyuan on 2016/8/20.
  */

@@ -5,32 +5,17 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.IBinder;
-import android.util.Log;
 
 import com.yiyuanliu.hepan.R;
 import com.yiyuanliu.hepan.activity.MessageActivity;
 import com.yiyuanliu.hepan.data.DataManager;
 import com.yiyuanliu.hepan.data.bean.HeartBeat;
-import com.yiyuanliu.hepan.data.bean.PmJson;
-import com.yiyuanliu.hepan.data.model.NotifyPost;
-import com.yiyuanliu.hepan.data.model.NotifySys;
-import com.yiyuanliu.hepan.data.model.Pm;
-import com.yiyuanliu.hepan.utils.ExceptionHandle;
-import com.yiyuanliu.hepan.utils.HepanException;
 import com.yiyuanliu.hepan.utils.PreferenceHelper;
-import com.yiyuanliu.hepan.utils.TimeUtil;
-
-import java.io.IOException;
-import java.util.Random;
 
 import retrofit2.Response;
-import rx.Subscriber;
-import rx.functions.Action1;
 
 public class HeartService extends IntentService {
 

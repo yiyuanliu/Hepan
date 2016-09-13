@@ -34,6 +34,8 @@ import com.yiyuanliu.hepan.data.model.NotifyPost;
 import com.yiyuanliu.hepan.data.model.NotifySys;
 import com.yiyuanliu.hepan.data.model.Pm;
 import com.yiyuanliu.hepan.data.model.PmMessage;
+import com.yiyuanliu.hepan.data.model.Rate;
+import com.yiyuanliu.hepan.data.model.RateInfo;
 import com.yiyuanliu.hepan.data.model.UserBase;
 import com.yiyuanliu.hepan.span.ImageTag;
 import com.yiyuanliu.hepan.utils.HepanException;
@@ -44,12 +46,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -64,6 +63,8 @@ import retrofit2.http.Part;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import rx.Observable;
+import rx.Subscriber;
+import rx.exceptions.OnErrorNotImplementedException;
 import rx.functions.Func1;
 
 /**
@@ -629,6 +630,24 @@ public class Api {
         }
     }
 
+    public Observable<RateInfo> loadRateInfo(final String url) {
+        return Observable.create(new Observable.OnSubscribe<RateInfo>() {
+            @Override
+            public void call(Subscriber<? super RateInfo> subscriber) {
+                subscriber.onNext(RateInfo.loadRateInfo(url));
+            }
+        });
+    }
+
+    public Observable<Rate> rate(final String url, final int score, final String info, final boolean notifyUser) {
+        return Observable.create(new Observable.OnSubscribe<Rate>() {
+            @Override
+            public void call(Subscriber<? super Rate> subscriber) {
+                subscriber.onNext(Rate.rate(url, score, info, notifyUser));
+            }
+        });
+    }
+
     public interface WebApi{
         @FormUrlEncoded
         @POST("index.php?r=user/login")
@@ -746,6 +765,7 @@ public class Api {
         @FormUrlEncoded
         @POST("index.php?r=forum/atuserlist")
         Observable<AtUser> getAtUser(@Field("pageSize") int pageSize, @FieldMap Map<String,String> map);
+
 
     }
 

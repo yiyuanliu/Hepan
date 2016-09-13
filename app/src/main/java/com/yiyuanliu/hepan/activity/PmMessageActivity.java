@@ -24,7 +24,6 @@ import com.yiyuanliu.hepan.data.model.PmMessage;
 import com.yiyuanliu.hepan.data.model.UserBase;
 import com.yiyuanliu.hepan.presenter.PmMessagePresenter;
 import com.yiyuanliu.hepan.utils.ExceptionHandle;
-import com.yiyuanliu.hepan.utils.MyLayoutManager;
 
 import java.util.List;
 

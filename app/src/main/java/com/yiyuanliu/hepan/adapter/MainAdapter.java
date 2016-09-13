@@ -1,8 +1,6 @@
 package com.yiyuanliu.hepan.adapter;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,7 +8,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.yiyuanliu.hepan.R;
-import com.yiyuanliu.hepan.activity.FragmentActivity;
 import com.yiyuanliu.hepan.activity.PostListActivity;
 import com.yiyuanliu.hepan.base.MoreLoadAdapter;
 import com.yiyuanliu.hepan.data.model.Topic;
@@ -19,7 +16,6 @@ import com.yiyuanliu.hepan.utils.LayoutUtil;
 import com.yiyuanliu.hepan.utils.TimeUtil;
 
 import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 import butterknife.BindView;

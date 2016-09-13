@@ -16,6 +16,11 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+
+        maven{
+            url "http://maven.bughd.com/public"
+        }
+
     }
 
 }

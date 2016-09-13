@@ -1,8 +1,6 @@
 package com.yiyuanliu.hepan.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,10 +16,6 @@ import com.yiyuanliu.hepan.data.DataManager;
 import com.yiyuanliu.hepan.data.model.Forum;
 import com.yiyuanliu.hepan.presenter.BoardListPresenter;
 import com.yiyuanliu.hepan.utils.ExceptionHandle;
-import com.yiyuanliu.hepan.utils.HepanException;
-import com.yiyuanliu.hepan.utils.NoTopicException;
-
-import java.net.SocketTimeoutException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

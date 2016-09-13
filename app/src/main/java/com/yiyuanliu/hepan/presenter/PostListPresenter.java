@@ -1,22 +1,18 @@
 package com.yiyuanliu.hepan.presenter;
 
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.yiyuanliu.hepan.base.BasePresenter;
 import com.yiyuanliu.hepan.base.MoreLoadPresenter;
 import com.yiyuanliu.hepan.contract.PostListView;
-import com.yiyuanliu.hepan.data.Api;
 import com.yiyuanliu.hepan.data.DataManager;
-import com.yiyuanliu.hepan.data.bean.BaseBean;
-import com.yiyuanliu.hepan.data.bean.Content;
 import com.yiyuanliu.hepan.data.bean.NormalBean;
 import com.yiyuanliu.hepan.data.bean.PostList;
-import com.yiyuanliu.hepan.data.bean.TopicAdmin;
 import com.yiyuanliu.hepan.data.bean.VoteRs;
 import com.yiyuanliu.hepan.data.model.AtUserList;
+import com.yiyuanliu.hepan.data.model.Rate;
+import com.yiyuanliu.hepan.data.model.RateInfo;
 import com.yiyuanliu.hepan.span.ImageTag;
 import com.yiyuanliu.hepan.utils.HepanException;
 
@@ -280,6 +276,56 @@ public class PostListPresenter extends BasePresenter<PostListView> implements Mo
                     public void onNext(AtUserList atUserList) {
                         if (isViewAttached()) {
                             getView().showAt(atUserList);
+                        }
+                    }
+                });
+    }
+
+    public void rate(RateInfo rateInfo, int score, String reason, boolean notify) {
+        dataManager.getApi().rate(rateInfo.rateUrl, score, reason, notify)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Subscriber<Rate>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (isViewAttached()) {
+                            getView().rateFailed(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(Rate rate) {
+                        if (isViewAttached()) {
+                            getView().rateFinished(rate);
+                        }
+                    }
+                });
+    }
+
+    public void loadRateInfo(String rateUrl) {
+        dataManager.getApi().loadRateInfo(rateUrl)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Subscriber<RateInfo>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (isViewAttached()) {
+                            getView().rateInfoLoadedFailed(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(RateInfo rateInfo) {
+                        if (isViewAttached()) {
+                            getView().rateInfoLoaded(rateInfo);
                         }
                     }
                 });

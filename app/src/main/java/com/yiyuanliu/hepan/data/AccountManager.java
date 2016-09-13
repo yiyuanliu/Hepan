@@ -1,17 +1,17 @@
 package com.yiyuanliu.hepan.data;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.instabug.library.Instabug;
 import com.yiyuanliu.hepan.data.bean.UserLogin;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
+
+import im.fir.sdk.FIR;
 
 
 /**
@@ -81,7 +81,7 @@ public class AccountManager {
 
     public void logout(){
 
-        Instabug.setUserData("游客");
+        FIR.addCustomizeValue("userdata", "游客");
 
         sharedPreferences.edit().clear().apply();
 

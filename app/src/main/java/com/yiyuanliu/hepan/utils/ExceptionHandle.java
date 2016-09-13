@@ -2,15 +2,11 @@ package com.yiyuanliu.hepan.utils;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.stream.MalformedJsonException;
-import com.instabug.library.Instabug;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
-
-import retrofit2.Retrofit;
 
 /**
  * Created by yiyuan on 2016/7/27.

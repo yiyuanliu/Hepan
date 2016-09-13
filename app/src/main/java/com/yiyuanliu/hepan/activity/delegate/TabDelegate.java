@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -24,9 +25,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.yiyuanliu.hepan.activity.MainActivity;
 import com.yiyuanliu.hepan.R;
 import com.yiyuanliu.hepan.activity.LoginActivity;
+import com.yiyuanliu.hepan.activity.MainActivity;
 import com.yiyuanliu.hepan.activity.NewTopicActivity;
 import com.yiyuanliu.hepan.activity.UserInfoActivity;
 import com.yiyuanliu.hepan.data.AccountManager;
@@ -215,6 +216,10 @@ public class TabDelegate implements Delegate, NavigationView.OnNavigationItemSel
 
     @OnClick(R.id.fab)
     public void publicNew(){
+        if (!dataManager.getAccountManager().hasAccount()) {
+            Snackbar.make(navigationView, "登陆后才能发帖", Snackbar.LENGTH_SHORT).show();
+            return;
+        }
         Intent intent = new Intent(mainActivity, NewTopicActivity.class);
         mainActivity.startActivity(intent);
     }

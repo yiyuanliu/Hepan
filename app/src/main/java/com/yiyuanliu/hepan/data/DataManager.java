@@ -2,10 +2,11 @@ package com.yiyuanliu.hepan.data;
 
 import android.content.Context;
 
-import com.instabug.library.Instabug;
 import com.yiyuanliu.hepan.App;
 import com.yiyuanliu.hepan.data.bean.UserLogin;
 import com.yiyuanliu.hepan.notify.HeartService;
+
+import im.fir.sdk.FIR;
 
 /**
  * Created by yiyuan on 2016/7/9.
@@ -34,9 +35,9 @@ public class DataManager implements Api.LoginListener {
                 AccountManager manager = dataManager.getAccountManager();
                 if (manager.hasAccount()) {
                     String stringBuilder = "userId:" + manager.getUid() + ",userName:" + manager.getUserName();
-                    Instabug.setUserData(stringBuilder);
+                    FIR.addCustomizeValue("userdata", stringBuilder);
                 } else {
-                    Instabug.setUserData("游客");
+                    FIR.addCustomizeValue("userdata", "游客");
                 }
             }
         }
@@ -50,8 +51,6 @@ public class DataManager implements Api.LoginListener {
         HeartService.startService(App.getApp());
 
         AccountManager manager = accountManager;
-        String stringBuilder = "userId:" + manager.getUid() + ",userName" + manager.getUserName();
-        Instabug.setUserData(stringBuilder);
     }
 
     @Override

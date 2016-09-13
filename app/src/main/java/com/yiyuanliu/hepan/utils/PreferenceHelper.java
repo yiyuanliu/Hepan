@@ -1,11 +1,9 @@
 package com.yiyuanliu.hepan.utils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.yiyuanliu.hepan.App;
 import com.yiyuanliu.hepan.adapter.PostListAdapter;
 
 /**
@@ -72,7 +70,8 @@ public class PreferenceHelper {
     public int getMainActivityType() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        return Integer.parseInt(sharedPreferences.getString("main_type", "0"));
+        return Integer.parseInt(sharedPreferences.getString("main_type", "1"));
     }
+
 
 }

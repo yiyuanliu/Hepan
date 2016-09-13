@@ -10,10 +10,7 @@ import com.yiyuanliu.hepan.data.bean.SettingRs;
 import com.yiyuanliu.hepan.data.model.AtUserList;
 import com.yiyuanliu.hepan.data.model.Forum;
 
-import java.util.HashMap;
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
-import java.util.Map;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;

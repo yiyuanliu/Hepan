@@ -1,31 +1,22 @@
 package com.yiyuanliu.hepan.activity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.content.Context;
-import android.support.v7.widget.ThemedSpinnerAdapter;
-import android.content.res.Resources.Theme;
+
 import com.yiyuanliu.hepan.R;
 import com.yiyuanliu.hepan.adapter.BoardSpinnerAdapter;
-import com.yiyuanliu.hepan.contract.BoardListView;
 import com.yiyuanliu.hepan.contract.BoardView;
 import com.yiyuanliu.hepan.data.DataManager;
 import com.yiyuanliu.hepan.data.model.Forum;

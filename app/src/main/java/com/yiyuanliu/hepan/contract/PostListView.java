@@ -1,9 +1,10 @@
 package com.yiyuanliu.hepan.contract;
 
-import com.yiyuanliu.hepan.adapter.PostListAdapter;
 import com.yiyuanliu.hepan.base.MoreLoadView;
 import com.yiyuanliu.hepan.data.bean.PostList;
 import com.yiyuanliu.hepan.data.model.AtUserList;
+import com.yiyuanliu.hepan.data.model.Rate;
+import com.yiyuanliu.hepan.data.model.RateInfo;
 
 import java.util.List;
 
@@ -20,4 +21,9 @@ public interface PostListView extends MoreLoadView<PostList.TopicReply> {
     void voteFailed(Throwable throwable);
 
     void showAt(AtUserList atUserList);
+
+    void rateInfoLoaded(RateInfo rateInfo);
+    void rateInfoLoadedFailed(Throwable throwable);
+    void rateFinished(Rate rate);
+    void rateFailed(Throwable throwable);
 }

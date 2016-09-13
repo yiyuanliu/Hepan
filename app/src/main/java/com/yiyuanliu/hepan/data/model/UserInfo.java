@@ -1,12 +1,8 @@
 package com.yiyuanliu.hepan.data.model;
 
-import com.yiyuanliu.hepan.data.bean.*;
-import com.yiyuanliu.hepan.data.bean.UserList;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by yiyuan on 2016/7/19.

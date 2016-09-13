@@ -22,7 +22,7 @@
         <ListPreference
             android:key="main_type"
             android:title="主页布局"
-            android:defaultValue="0"
+            android:defaultValue="1"
             android:entries="@array/pref_main_entries"
             android:entryValues="@array/pref_main_values"/>
 

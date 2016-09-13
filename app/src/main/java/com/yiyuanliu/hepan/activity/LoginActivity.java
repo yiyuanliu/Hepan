@@ -1,10 +1,8 @@
 package com.yiyuanliu.hepan.activity;
 
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.transition.TransitionManager;
 import android.view.KeyEvent;
 import android.view.View;

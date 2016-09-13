@@ -8,7 +8,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.yiyuanliu.hepan.R;
-import com.yiyuanliu.hepan.data.model.Forum;
 
 /**
  * Created by yiyuan on 2016/8/6.

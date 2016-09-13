@@ -2,7 +2,6 @@ package com.yiyuanliu.hepan.presenter;
 
 import com.yiyuanliu.hepan.base.BasePresenter;
 import com.yiyuanliu.hepan.base.MoreLoadPresenter;
-import com.yiyuanliu.hepan.base.MoreLoadView;
 import com.yiyuanliu.hepan.contract.UserListView;
 import com.yiyuanliu.hepan.data.DataManager;
 import com.yiyuanliu.hepan.data.model.UserList;
