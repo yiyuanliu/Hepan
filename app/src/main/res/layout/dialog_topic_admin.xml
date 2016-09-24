@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/edit_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:minHeight="48dp"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:minLines="1"
+        android:textAppearance="@style/PostTextAppearance" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:dividerPadding="0dp"
+        android:divider="@null">
+
+        <ImageButton
+            android:id="@+id/add_pic"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_camera_white_24dp"
+            android:scaleType="center"
+            android:tint="?colorAccent"
+            android:layout_gravity="center"
+            android:background="?selectableItemBackground"/>
+
+        <ImageButton
+            android:id="@+id/at_user"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_face_white_24dp"
+            android:scaleType="center"
+            android:tint="?colorAccent"
+            android:layout_gravity="center"
+            android:background="?selectableItemBackground"/>
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/pic_num"
+            android:text="0"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
+
+        <Button
+            android:id="@+id/send"
+            android:text="发送"
+            android:enabled="false"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+
+    </LinearLayout>
+
+</LinearLayout>

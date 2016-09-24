@@ -19,7 +19,12 @@
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".activity.LoginActivity"
@@ -29,7 +34,7 @@
             android:name=".activity.PostListActivity"
             android:label="@string/title_activity_post_list"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoBar" />
+            android:theme="@style/PostListActivity" />
         <activity
             android:name=".activity.BoardListActivity"
             android:label="@string/title_activity_board_list"
@@ -85,10 +90,7 @@
 
         <activity android:name=".activity.SplashActivity"
             android:theme="@style/AppTheme.NoBar.Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <meta-data android:value="7a50b770b12b19d76a01dc99964ab0ab" android:name="BUG_HD_SDK_GENERAL_KEY" />

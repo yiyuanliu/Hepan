@@ -39,34 +39,23 @@
                 tools:text="9 mins ago"/>
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/quote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_micro"
-            android:layout_marginBottom="@dimen/spacing_micro">
-
-            <TextView
-                android:layout_width="2dp"
-                android:layout_height="match_parent"
-                android:background="@color/colorAccent"/>
-
-            <TextView
-                android:id="@+id/quote"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:paddingStart="@dimen/spacing_normal"
-                android:textSize="14sp"
-                android:textColor="?android:attr/textColorPrimary"/>
-        </LinearLayout>
+            android:textAppearance="@style/PostTextAppearance"
+            android:padding="4dp"
+            android:textSize="14sp"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:background="@drawable/background_quote">
+        </TextView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/title"
-            android:textSize="14sp"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textStyle="normal"
+            android:textAppearance="@style/PostTextAppearance"
             tools:text="This is a title"/>
     </LinearLayout>
 

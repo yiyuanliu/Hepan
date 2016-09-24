@@ -14,13 +14,8 @@ import java.util.List;
 public interface PostListView extends MoreLoadView<PostList.TopicReply> {
     void loadNewSuccess(PostList.TopicContent topic);
 
-    void replySuccess();
-    void replyFailed(Throwable throwable);
-
     void voteSuccessful(List<PostList.TopicContent.PollInfo.PollItem> pollItemList);
     void voteFailed(Throwable throwable);
-
-    void showAt(AtUserList atUserList);
 
     void rateInfoLoaded(RateInfo rateInfo);
     void rateInfoLoadedFailed(Throwable throwable);

@@ -28,7 +28,8 @@ public class NotifyPost {
         topicId = dataBean.getTopic_id();
         topicName = dataBean.getTopic_subject();
         topicContent = dataBean.getTopic_content();
-        if (topicContent != null && topicContent.lastIndexOf("\n") == topicContent.length() - 1) {
+        if (topicContent != null && topicContent.lastIndexOf("\n") == topicContent.length() - 1
+                && topicContent.length() != 0) {
             topicContent = topicContent.substring(0, topicContent.length() - 1);
         }
 

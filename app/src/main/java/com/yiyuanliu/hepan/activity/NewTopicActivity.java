@@ -50,7 +50,8 @@ import butterknife.ButterKnife;
 /**
  * Created by yiyuan on 2016/7/29.
  */
-public class NewTopicActivity extends AppCompatActivity implements NewTopicView, BoardChoseAdapter.OnBoardChangedListener {
+public class NewTopicActivity extends AppCompatActivity
+        implements NewTopicView, BoardChoseAdapter.OnBoardChangedListener {
 
     public static final int REQUEST_PERMISSION = 0;
     public static final int INTENT_GET_IMAGE = 1;

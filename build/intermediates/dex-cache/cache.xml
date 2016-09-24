@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.7\45aaffc3cf6fa7c9b9eed6121369cad25789cf4a\rxjava-1.1.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="45aaffc3cf6fa7c9b9eed6121369cad25789cf4a">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\rxjava-1.1.7_4c1243aef2e5e639396f29f1461a0d71a7cc62ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.4.0_10558d5f3e9cf8a78b4581a2e4730c16352f5939.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\io.reactivex\rxandroid\1.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5a2386ad9bfff580b206a7fe305cdccd00798159">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\io.reactivex-rxandroid-1.2.1_0d88c09d02f14e2ea65888b70e914f7d434acc85.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_dbe8f12923cf3ed5977931f1497590ba7091a9c7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_98d422b8e428e8a36cc4e6dc3c8ba58863780a40.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_26af39d38fc348bc4b3b2e88738270f311816825.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\im.fir\fir-sdk\1.3.7\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="279f57209ae2a936414d498b2bc0c53410860372">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\im.fir-fir-sdk-1.3.7_291f64afaf4fd3388bf2d6bdab8addc5c728762d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_a744fa282131d7819b97192f3ca0caf6a197aa3e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\.gradle\caches\modules-2\files-2.1\org.jsoup\jsoup\1.9.2\5e3bda828a80c7a21dfbe2308d1755759c2fd7b4\jsoup-1.9.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5e3bda828a80c7a21dfbe2308d1755759c2fd7b4">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\jsoup-1.9.2_55a7a62dc343917a42dd84cb3cdf5ccab5d3be68.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_9b2d21b2485765eb9dac94c909e3b5ea48977065.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d9ecde39b460470e655de6e47c05573d2d5a8bfb">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-23.4.0_58ef1a1c5c0fb5c17fb2c21a8d7d7bce9085397f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\adapter-rxjava\2.1.0\693eddc23e87ab13f9cf5001707ce8e7e1d1ff01\adapter-rxjava-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="693eddc23e87ab13f9cf5001707ce8e7e1d1ff01">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\adapter-rxjava-2.1.0_ca846cc14f399743331cb7401bfc5eff2fdb8194.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\com.dmitrymalkovich.android\material-design-dimens\1.2\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="b43fc5507b44786a37a3172f479978123d769f3f">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\com.dmitrymalkovich.android-material-design-dimens-1.2_41da010b0b32cbc1244be8b75aa81fc28b109a59.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\gson-2.7_da29d6bc0fe7dd09ea1eb6a6ecd11955abe4b733.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.1.0\aa557d71ead91cbf26e0c316a0f593d168303309\converter-gson-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\converter-gson-2.1.0_b472132b1d47ad8906c9227a4d30bc59f356e45f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.2.1\d6f54d76edfbe779a50a8636b10fd3f555d8f780\butterknife-annotations-8.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d6f54d76edfbe779a50a8636b10fd3f555d8f780">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\butterknife-annotations-8.2.1_75c95ddb1564a680b51a1d7d50f105a0e63d2ce9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.4.1\c7c4f9e35c2fd5900da24f9872e3971801f08ce0\okhttp-3.4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\okhttp-3.4.1_ae5dacfe34ab8831e62284ee298af0808e83fa83.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.1.0\2de7cd8b95b7021b1d597f049bcb422055119f2c\retrofit-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\retrofit-2.1.0_85b561b702e536b5d755a3f66cc667bc72e4f387.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.9.0\f824591a0016efbaeddb8300bee54832a1398cfa\okio-1.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\okio-1.9.0_262cd84380e6c22c06d4caa33b74920a3e2a0396.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\com.jakewharton\butterknife\8.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ca5e58104f56f918f0fb3a5b1b371ab599ae56b2">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\com.jakewharton-butterknife-8.2.1_3851d39d018d3e127eedb6f0bebc688cef28c04e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_93f02d525fd737f0685c77211d0f338a25442b52.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\android\android-sdk-windows\extras\android\m2repository\com\android\support\support-annotations\24.0.0\support-annotations-24.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\support-annotations-24.0.0_b4469a9f32eb5ba87bd98428522dce06f43fb947.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\Hepan\library\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="1ce41558527afad406bd253d9d9807726f726cc3">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\Hepan-library-unspecified_e8cb07706ab5cea5fdcec5332af7b8b3509e9862.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="C:\Users\yiyuan\AndroidStudioProjects\Hepan\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.4.0_70512a4be5d9fbf415c402531b6a1043b05c61fd.jar" />
+    </item>
+
+</items>

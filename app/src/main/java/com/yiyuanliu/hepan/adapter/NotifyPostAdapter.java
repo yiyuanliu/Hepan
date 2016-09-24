@@ -1,5 +1,8 @@
 package com.yiyuanliu.hepan.adapter;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +12,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.yiyuanliu.hepan.R;
+import com.yiyuanliu.hepan.activity.PostListActivity;
+import com.yiyuanliu.hepan.activity.UserInfoActivity;
+import com.yiyuanliu.hepan.activity.UserListActivity;
 import com.yiyuanliu.hepan.base.MoreLoadAdapter;
 import com.yiyuanliu.hepan.data.model.NotifyPost;
-import com.yiyuanliu.hepan.dialog.ReplyDialog;
+import com.yiyuanliu.hepan.dialog.TopicAdminDialog;
 import com.yiyuanliu.hepan.utils.AvatarTrans;
 import com.yiyuanliu.hepan.utils.TimeUtil;
 
@@ -120,7 +126,26 @@ public class NotifyPostAdapter extends MoreLoadAdapter{
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ReplyDialog.showDialog(itemView.getContext(), notifyPost);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+                    builder.setItems(new String[]{"回复评论", "查看 ta 的资料", "查看原帖"},
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    switch (which) {
+                                        case 0:
+                                            TopicAdminDialog.show((AppCompatActivity) itemView.getContext(),
+                                                    notifyPost.topicId, notifyPost.replyRemindId);
+                                            break;
+                                        case 1:
+                                            UserInfoActivity.startActivity(itemView.getContext(), notifyPost.user);
+                                            break;
+                                        case 2:
+                                            PostListActivity.startActivity(itemView.getContext(), notifyPost.topicId);
+                                            break;
+                                    }
+                                }
+                            })
+                            .show();
                 }
             });
         }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,7 @@ import butterknife.OnClick;
 /**
  * Created by yiyuan on 2016/9/3.
  */
-public class RateDialog extends Dialog {
+public class RateDialog extends AppCompatDialog {
     private RateInfo rateInfo;
     private RateListener rateListener;
 
@@ -42,17 +43,10 @@ public class RateDialog extends Dialog {
         return rateDialog;
     }
 
-    public RateDialog(Context context) {
-        super(context);
-    }
-
-    public RateDialog(Context context, int themeResId) {
+    protected RateDialog(Context context, int themeResId) {
         super(context, themeResId);
     }
 
-    protected RateDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
-    }
 
     @BindView(R.id.rate) Button rate;
     @BindView(R.id.reason) TextInputLayout reason;
@@ -64,6 +58,7 @@ public class RateDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_rate);
+        setTitle("评分");
 
         ButterKnife.bind(this);
         spinner.setAdapter(new RateSpinnerAdapter());

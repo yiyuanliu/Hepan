@@ -116,93 +116,6 @@ public class PostListPresenter extends BasePresenter<PostListView> implements Mo
         return subscription != null && !subscription.isUnsubscribed();
     }
 
-    public void replyTopic(int replyId, TextView textView) {
-        SpannableString spannableString = new SpannableString(textView.getEditableText());
-        ImageTag[] imageTags = spannableString.getSpans(0, spannableString.length(), ImageTag.class);
-
-        List<Object> contentList = new ArrayList<>();
-        int last = 0;
-        for (ImageTag imageTag:imageTags) {
-            if (last < spannableString.getSpanStart(imageTag))
-                contentList.add(spannableString.toString().substring(last, spannableString.getSpanStart(imageTag)));
-            last = spannableString.getSpanEnd(imageTag);
-            contentList.add(imageTag);
-        }
-
-        if (last < spannableString.length()) {
-            contentList.add(spannableString.toString().substring(last, spannableString.length()));
-        }
-
-        dataManager.getApi().reply(topicId, replyId, contentList, dataManager.getAccountManager().getUserMap())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<NormalBean>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (isViewAttached()){
-                            getView().replyFailed(e);
-                        }
-                    }
-
-                    @Override
-                    public void onNext(NormalBean baseBean) {
-                        page --;
-                        hasMore = true;
-                        if (isViewAttached()){
-                            HepanException.detectRespon(baseBean);
-                            getView().replySuccess();
-                        }
-                    }
-                });
-    }
-
-
-//    public void replyTopic(int replyId, String content) {
-//        TopicAdmin topicAdmin = new TopicAdmin();
-//        topicAdmin.getBody().getJson().setTid(topicId);
-//        topicAdmin.getBody().getJson().setReplyId(replyId);
-//        if (replyId != 0){
-//            topicAdmin.getBody().getJson().setIsQuote(1);
-//        }
-//
-//        Content content1 = new Content();
-//        content1.type = Content.TYPE_NORMAL;
-//        content1.infor = content;
-//
-//        topicAdmin.getBody().getJson().addContent(content1);
-//
-//        dataManager.getApi().getWebApi()
-//                .topicAdmin(Api.TOPIC_ADMIN_REPLY, topicAdmin, dataManager.getAccountManager().getUserMap())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(new Subscriber<NormalBean>() {
-//                    @Override
-//                    public void onCompleted() {
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        if (isViewAttached()){
-//                            getView().replyFailed(e);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onNext(NormalBean baseBean) {
-//                        page --;
-//                        hasMore = true;
-//                        if (isViewAttached()){
-//                            HepanException.detectRespon(baseBean);
-//                            getView().replySuccess();
-//                        }
-//                    }
-//                });
-//    }
-
     public void vote(List<Integer> integerList) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Integer integer:integerList) {
@@ -237,7 +150,7 @@ public class PostListPresenter extends BasePresenter<PostListView> implements Mo
                 });
     }
 
-    public void cancel(){
+    private void cancel(){
         if (isLoading()){
             subscription.unsubscribe();
         }
@@ -254,31 +167,6 @@ public class PostListPresenter extends BasePresenter<PostListView> implements Mo
     public void unbindView() {
         super.unbindView();
         cancel();
-    }
-
-    public void loadAt() {
-        dataManager.getApi().loadAtUser(dataManager.getAccountManager().getUserMap())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<AtUserList>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (isViewAttached()) {
-                            getView().replyFailed(e);
-                        }
-                    }
-
-                    @Override
-                    public void onNext(AtUserList atUserList) {
-                        if (isViewAttached()) {
-                            getView().showAt(atUserList);
-                        }
-                    }
-                });
     }
 
     public void rate(RateInfo rateInfo, int score, String reason, boolean notify) {

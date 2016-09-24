@@ -15,4 +15,5 @@
 
     <color name="shadow_start">#30000000</color>
     <color name="shadow_end">#00000000</color>
+    <color name="colorWhiteDeep">#b2b2b2</color>
 </resources>
